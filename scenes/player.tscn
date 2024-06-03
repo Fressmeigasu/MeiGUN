@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2tmcy11lxkl7"]
+
+[ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_6rxka"]
+[ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://assets/characters/happy_boo/happy_boo.tscn" id="2_pn5qw"]
+[ext_resource type="PackedScene" uid="uid://b06l4f4s05w3u" path="res://scenes/gun.tscn" id="3_o5bxk"]
+[ext_resource type="PackedScene" uid="uid://cfrnjjeanjsiv" path="res://scenes/Gun2.tscn" id="4_pahx2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efnaj"]
+size = Vector2(90, 126)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1wry"]
+radius = 54.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blxj4"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_guctx"]
+bg_color = Color(0.417794, 0.952887, 0.355333, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(929, 482)
+script = ExtResource("1_6rxka")
+metadata/_edit_group_ = true
+
+[node name="HappyBoo" parent="." instance=ExtResource("2_pn5qw")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -38)
+shape = SubResource("RectangleShape2D_efnaj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Gun" parent="." instance=ExtResource("3_o5bxk")]
+
+[node name="Gun2" parent="." instance=ExtResource("4_pahx2")]
+process_mode = 4
+visible = false
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, -16)
+shape = SubResource("CircleShape2D_c1wry")
+debug_color = Color(0.888255, 0.000273383, 0.799584, 0.42)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -147.0
+offset_top = -166.0
+offset_right = 146.0
+offset_bottom = -139.0
+theme_override_styles/background = SubResource("StyleBoxFlat_blxj4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_guctx")
+value = 100.0
+
+[connection signal="level_up" from="." to="Gun" method="_on_player_level_up"]

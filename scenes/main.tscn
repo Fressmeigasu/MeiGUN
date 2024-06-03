@@ -1,0 +1,144 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3useuwib4o0x"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_1jmsw"]
+[ext_resource type="PackedScene" uid="uid://b2tmcy11lxkl7" path="res://scenes/player.tscn" id="1_rgl6o"]
+[ext_resource type="PackedScene" uid="uid://cgf0v1l17ru26" path="res://scenes/pine_tree.tscn" id="2_1764a"]
+[ext_resource type="PackedScene" uid="uid://d1x0yx73x7452" path="res://scenes/mob.tscn" id="2_mv2d5"]
+[ext_resource type="PackedScene" uid="uid://2ku1rampoqk5" path="res://scenes/coin.tscn" id="5_2ct23"]
+[ext_resource type="PackedScene" uid="uid://bkpwy3i8i306d" path="res://scenes/options_menu.tscn" id="6_3p4yj"]
+
+[sub_resource type="Curve2D" id="Curve2D_xjhuj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -416.074, -225.093, 0, 0, 0, 0, 2846.38, -222.452, 0, 0, 0, 0, 2859.5, 1725.67, 0, 0, 0, 0, -426.567, 1722.15, 0, 0, 0, 0, -416.074, -225.093)
+}
+point_count = 5
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_1jmsw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -30
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -611.0
+offset_top = -316.0
+offset_right = 4140.0
+offset_bottom = 2335.0
+
+[node name="Player" parent="." instance=ExtResource("1_rgl6o")]
+position = Vector2(1009, 564)
+motion_mode = 1
+platform_floor_layers = 4294967292
+
+[node name="spawn" type="Path2D" parent="Player"]
+position = Vector2(-1319.17, -747.303)
+scale = Vector2(1.14362, 1.13596)
+curve = SubResource("Curve2D_xjhuj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/spawn"]
+unique_name_in_owner = true
+position = Vector2(-416.074, -225.093)
+rotation = 0.000809515
+
+[node name="enviro" type="Node2D" parent="."]
+
+[node name="PineTree" parent="enviro" instance=ExtResource("2_1764a")]
+position = Vector2(1349, 162)
+
+[node name="PineTree2" parent="enviro" instance=ExtResource("2_1764a")]
+position = Vector2(412, 439)
+
+[node name="PineTree3" parent="enviro" instance=ExtResource("2_1764a")]
+position = Vector2(280, 842)
+
+[node name="PineTree4" parent="enviro" instance=ExtResource("2_1764a")]
+position = Vector2(970, 833)
+
+[node name="PineTree5" parent="enviro" instance=ExtResource("2_1764a")]
+position = Vector2(1666, 369)
+
+[node name="PineTree6" parent="enviro" instance=ExtResource("2_1764a")]
+position = Vector2(795, 121)
+
+[node name="PineTree7" parent="enviro" instance=ExtResource("2_1764a")]
+position = Vector2(1411, 185)
+
+[node name="PineTree8" parent="enviro" instance=ExtResource("2_1764a")]
+position = Vector2(1451, 147)
+
+[node name="mobs" type="Node2D" parent="."]
+
+[node name="mob" parent="mobs" instance=ExtResource("2_mv2d5")]
+position = Vector2(220, 267)
+
+[node name="mob2" parent="mobs" instance=ExtResource("2_mv2d5")]
+position = Vector2(256, 975)
+
+[node name="mob3" parent="mobs" instance=ExtResource("2_mv2d5")]
+position = Vector2(365, 555)
+
+[node name="Coin" parent="mobs" instance=ExtResource("5_2ct23")]
+
+[node name="MobSpawnerTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.741176)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "GAME OVER"
+
+[node name="Button" type="Button" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -335.0
+offset_right = 182.0
+offset_bottom = -217.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 80
+text = "RESTART"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+process_mode = 2
+
+[node name="Options_menu" parent="CanvasLayer2" instance=ExtResource("6_3p4yj")]
+visible = false
+
+[node name="GameTimer" type="Timer" parent="."]
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="level_up" from="Player" to="Player" method="_on_level_up"]
+[connection signal="coin_taken" from="mobs/Coin" to="." method="_on_coin_coin_taken"]
+[connection signal="timeout" from="MobSpawnerTimer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="GameOver/ColorRect/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
