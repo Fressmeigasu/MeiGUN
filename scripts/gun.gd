@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var timer = $Timer
+@export var GunMaxSpeed : float = 0.5
 
 func _physics_process(delta):
 	var enemy_in_range2 = get_overlapping_bodies()
@@ -15,6 +16,7 @@ func shoot():
 	new_bullet.global_position = %ShootingPoint.global_position
 	new_bullet.global_rotation = %ShootingPoint.global_rotation
 	%ShootingPoint.add_child(new_bullet)
+	new_bullet.amount = 5
 
 
 func _on_timer_timeout():
@@ -23,5 +25,5 @@ func _on_timer_timeout():
 
 func _on_player_level_up():
 	timer.wait_time = timer.wait_time /2
-	if timer.wait_time <= 0.05:
-		timer.wait_time == 0.05
+	if timer.wait_time <= GunMaxSpeed:
+		timer.wait_time = GunMaxSpeed

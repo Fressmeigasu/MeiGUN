@@ -3,6 +3,7 @@ extends Area2D
 const speed : float = 1000.0
 var travelled_distance = 0
 const range = 1200
+var amount : int
 
 func _physics_process(delta):
 	var direction = Vector2.RIGHT.rotated(rotation)
@@ -16,4 +17,4 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	queue_free()
 	if body.has_method("take_damage"):
-		body.take_damage()
+		body.take_damage(amount)

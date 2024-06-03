@@ -1,7 +1,6 @@
 extends CharacterBody2D
 var score = 0
 signal health_depleted
-signal coin_pickedd
 signal level_up
 
 
@@ -9,7 +8,7 @@ var level : int = 1
 var health: float = 100.0
 const speed: int = 500
 var max_health = health
-
+@export var max_health_limit : float
 
 func _physics_process(delta):
 	#directions
@@ -39,18 +38,18 @@ func _physics_process(delta):
 		
 	$ProgressBar.value = health
 
-func coin_picked_up():
-	score += 1
+func coin_picked_up(coin_Value):
+	score += coin_Value
 	print("Score = " + str(score))
-	coin_pickedd.emit()
 
 func _on_level_up():
 	max_health *= level
 	print( "maxHealth = "+ str(max_health))
 	health = max_health
 	print("health = " + str(health))
+	if max_health >= max_health_limit:
+		max_health = max_health_limit
+		health = max_health_limit
 	%ProgressBar.max_value = max_health
-	if max_health >= 10000:
-		max_health = 10000
-		health = 10000
+
 

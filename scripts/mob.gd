@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var player = get_node("/root/Game/Player")
 signal enemy_died()
 
-var health = 1
+var health = 10
 
 const speed : float = 200
 func _ready():
@@ -15,9 +15,9 @@ func _physics_process(delta):
 	velocity = direction * speed
 	move_and_slide()
 	
-func take_damage():
+func take_damage(amount):
 	$Slime.play_hurt()
-	health -= 1
+	health -= amount
 	if health <= 0:
 		queue_free()
 		enemy_died.emit()
@@ -38,3 +38,4 @@ func _on_enemy_died():
 	var coin = coin_scene.instantiate()
 	get_parent().call_deferred("add_child", coin)
 	coin.global_position = global_position
+	coin.add_to_group("Coins")

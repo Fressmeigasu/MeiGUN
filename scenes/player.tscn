@@ -28,6 +28,7 @@ corner_radius_bottom_left = 8
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(929, 482)
 script = ExtResource("1_6rxka")
+max_health_limit = 10000.0
 metadata/_edit_group_ = true
 
 [node name="HappyBoo" parent="." instance=ExtResource("2_pn5qw")]
