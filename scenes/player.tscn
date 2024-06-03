@@ -9,7 +9,7 @@
 size = Vector2(90, 126)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1wry"]
-radius = 54.0
+radius = 73.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blxj4"]
 bg_color = Color(0, 0, 0, 1)
@@ -36,6 +36,7 @@ unique_name_in_owner = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -38)
 shape = SubResource("RectangleShape2D_efnaj")
+debug_color = Color(0.87222, 0.348162, 0, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

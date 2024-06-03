@@ -1,3 +1,2 @@
-res://scenes/main.tscn
-res://scripts/main.gd
 res://scenes/player.tscn
+res://scenes/options_menu.tscn

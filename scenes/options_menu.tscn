@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkpwy3i8i306d"]
+[gd_scene load_steps=2 format=3 uid="uid://bkpwy3i8i306d"]
 
 [ext_resource type="Script" path="res://scripts/AUDIO.gd" id="1_w50xp"]
-[ext_resource type="AudioStream" uid="uid://ddftlkf4deq83" path="res://free-offset-x-quavo-type-beat-genius-free-trap-beats-2019-raptrap-instrumental.mp3" id="2_2hp5y"]
 
 [node name="Options_menu" type="Control"]
 layout_mode = 3
@@ -152,11 +151,6 @@ layout_mode = 2
 [node name="CONTROLS" type="Control" parent="Settings"]
 visible = false
 layout_mode = 2
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_2hp5y")
-autoplay = true
-bus = &"MUSIC"
 
 [connection signal="value_changed" from="Settings/AUDIO/HBoxContainer3/Sliders/MASTER" to="Settings/AUDIO" method="_on_master_value_changed"]
 [connection signal="value_changed" from="Settings/AUDIO/HBoxContainer3/Sliders/MUSIC" to="Settings/AUDIO" method="_on_music_value_changed"]

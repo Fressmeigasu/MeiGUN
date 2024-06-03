@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="tutorial 2d vampire surv"
+config/name="MeiGun"
 config/tags=PackedStringArray("gdscript", "learning")
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
