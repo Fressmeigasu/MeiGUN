@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bho8buvb0jyyx"]
+
+[ext_resource type="PackedScene" uid="uid://bp11t1m6n3ww3" path="res://scenes2/scenes/Opening/Opening.tscn" id="1_dkws0"]
+[ext_resource type="Texture2D" uid="uid://crakhvgwykfds" path="res://scenes2/assets/images/logo_vertical_color_dark.png" id="2_koncb"]
+
+[node name="Opening" instance=ExtResource("1_dkws0")]
+images = Array[Texture2D]([ExtResource("2_koncb")])
+
+[node name="BackgroundMusicPlayer" parent="." index="0"]
+bus = &"Master"

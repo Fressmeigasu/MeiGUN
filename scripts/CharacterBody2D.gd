@@ -52,4 +52,6 @@ func _on_level_up():
 		health = max_health_limit
 	%ProgressBar.max_value = max_health
 
+func player_damage(amount):
+	health -= amount
 

@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://4461ugk0yslg"]
+
+[ext_resource type="Script" path="res://scenes2/scenes/GameScene/GameUI.gd" id="1_l60xt"]
+[ext_resource type="PackedScene" uid="uid://bgd15blmrqlsv" path="res://scenes2/scenes/WinScreen/WinScreen.tscn" id="2_y7k0t"]
+[ext_resource type="PackedScene" uid="uid://3b7ufm0hlmdl" path="res://scenes2/scenes/LoseScreen/LoseScreen.tscn" id="3_6md0t"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="4_v3d4g"]
+[ext_resource type="PackedScene" uid="uid://dhlw37pwdtn50" path="res://scenes2/scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_6iqsx"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="6_rw24f"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_ptidt"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="8_rn1lb"]
+[ext_resource type="Script" path="res://scenes2/scenes/GameScene/ConfigurableSubViewport.gd" id="9_x0q0m"]
+[ext_resource type="Script" path="res://scenes2/scenes/GameScene/InputDisplayLabel.gd" id="10_0j0nf"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l60xt")
+win_scene = ExtResource("2_y7k0t")
+lose_scene = ExtResource("3_6md0t")
+
+[node name="PauseMenuController" type="Node" parent="."]
+script = ExtResource("4_v3d4g")
+pause_menu_packed = ExtResource("5_6iqsx")
+
+[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
+script = ExtResource("6_rw24f")
+level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
+files = Array[String](["res://scenes2/scenes/GameScene/Levels/Level1.tscn", "res://scenes2/scenes/GameScene/Levels/Level2.tscn", "res://scenes2/scenes/GameScene/Levels/Level3.tscn"])
+directory = "res://scenes2/scenes/GameScene/Levels"
+
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_ptidt")]
+bus = &"Master"
+
+[node name="LoadingScreen" parent="." instance=ExtResource("8_rn1lb")]
+visible = false
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="ConfigurableSubViewport" type="SubViewport" parent="ViewportContainer"]
+handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+script = ExtResource("9_x0q0m")
+
+[node name="InputDisplayLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -44.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("10_0j0nf")
+
+[connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
+[connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
+[connection signal="levels_finished" from="LevelLoader" to="." method="_on_level_loader_levels_finished"]

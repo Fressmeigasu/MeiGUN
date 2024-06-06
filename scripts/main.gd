@@ -47,6 +47,7 @@ func _on_player_health_depleted():
 func _on_button_pressed():
 	%GameOver.hide()
 	get_tree().paused = false
+	Spawning.reset()
 	get_tree().reload_current_scene()
 
 func _on_coin_coin_taken(amount):

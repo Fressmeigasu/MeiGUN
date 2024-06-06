@@ -19,7 +19,7 @@ size = Vector2(156, 148)
 [sub_resource type="PackedDataContainer" id="PackedDataContainer_00tn2"]
 script = ExtResource("4_3ejko")
 anim_more = Array[Resource("res://addons/BulletUpHell/Bullet/animStates.gd")]([])
-damage = 1.0
+damage = 20.0
 speed = 400.0
 scale = 2.0
 angle = 0.0

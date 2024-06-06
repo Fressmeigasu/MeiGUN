@@ -17,9 +17,9 @@ _data = {
 point_count = 5
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o7g23"]
-vertices = PackedVector2Array(4295, -1232, 4298, 3067, -1931, 3140, -1878, -1294)
+vertices = PackedVector2Array(4391, 3090, -1806, 3076, -1799, -672, 4335, -675)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1888, -1305, -1942, 3151, 4309, 3077, 4305, -1242)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1809, -682, -1817, 3086, 4402, 3101, 4345, -686)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qlgjb"]
@@ -354,6 +354,9 @@ maingame = NodePath("..")
 script = ExtResource("2_rhxye")
 MobSpawner = NodePath("../MobSpawnerTimer")
 player = NodePath("../Player")
+GunSpeed = 0.05
+MobSpawnerSpeed = 0.05
+MaxHealthLimit = 10000
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -30

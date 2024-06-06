@@ -12,13 +12,19 @@ config_version=5
 
 config/name="MeiGun"
 config/tags=PackedStringArray("gdscript", "learning")
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes2/scenes/Opening/OpeningWithLogo.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Spawning="*res://addons/BulletUpHell/Spawning.tscn"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+AppConfig="*res://addons/maaacks_game_template/base/scenes/Autoloads/AppConfig.tscn"
+SceneLoader="*res://addons/maaacks_game_template/base/scenes/Autoloads/SceneLoader.tscn"
+ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectMusicController.tscn"
+ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectUISoundController.tscn"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
@@ -32,7 +38,7 @@ project/assembly_name="tutorial 2d vampire surv"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/colorpicker_presets/plugin.cfg")
+enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg", "res://addons/colorpicker_presets/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/maaacks_game_template/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [file_customization]
 
@@ -72,6 +78,11 @@ pause={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+
+[maaacks_game_template]
+
+disable_plugin_dialogues=true
+copy_path="res://scenes2"
 
 [rendering]
 

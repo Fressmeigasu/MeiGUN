@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://caou43drynjn8"]
+
+[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.tscn" id="1_80lvu"]
+[ext_resource type="Script" path="res://scenes2/scenes/Menus/OptionsMenu/Video/VideoOptionsMenu.gd" id="2_rpsex"]
+
+[node name="Video" instance=ExtResource("1_80lvu")]
+script = ExtResource("2_rpsex")
