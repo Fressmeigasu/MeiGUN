@@ -54,4 +54,3 @@ func _on_level_up():
 
 func player_damage(amount):
 	health -= amount
-

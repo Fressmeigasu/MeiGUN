@@ -5,9 +5,7 @@ var PAUSED = false
 @onready var mob_spawner_timer = $MobSpawnerTimer
 
 @onready var game_timer = $GameTimer
-var gameTime = 0
-var minutes := 0
-@export var MobSpawnerLimit : float = 0.5
+
 
 signal minute_passed
 
@@ -52,27 +50,3 @@ func _on_button_pressed():
 
 func _on_coin_coin_taken(amount):
 	score += amount
-
-func _on_game_timer_timeout():
-	gameTime += 1
-	if gameTime == 60:
-		mob_spawner_timer.wait_time /= 2
-		gameTime = 0
-		minutes += 1
-		if mob_spawner_timer.wait_time < MobSpawnerLimit:
-			mob_spawner_timer.wait_time = MobSpawnerLimit
-		var format_string = "il s'est ecouler %s minutes"
-		var minute_string = format_string % str(minutes)
-		print(minute_string)
-		minute_passed.emit()
-		#get_tree().call_group("Mobs", "queue_free")
-		#get_tree().call_group("Coins", "queue_free")
-	print("gameTimer = " + str(gameTime))
-
-func _on_game_manager_boss_time():
-	var Boss = preload("res://scenes/boss.tscn").instantiate()
-	Boss.global_position = $BossSpawnPoint.global_position
-	$mobs.add_child(Boss)
-	Boss.add_to_group("Boss")
-	$MobSpawnerTimer.stop()
-	get_tree().call_group("Mobs", "queue_free")

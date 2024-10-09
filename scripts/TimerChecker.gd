@@ -12,4 +12,3 @@ func _process(_delta):
 	#GunSpeed = GunTimer.wait_time
 	MobSpawnerSpeed = MobSpawner.wait_time
 	MaxHealthLimit = player.max_health
-

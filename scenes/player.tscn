@@ -1,12 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2tmcy11lxkl7"]
+[gd_scene load_steps=9 format=3 uid="uid://b2tmcy11lxkl7"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_6rxka"]
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://assets/characters/happy_boo/happy_boo.tscn" id="2_pn5qw"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_e7j7o"]
 [ext_resource type="PackedScene" uid="uid://b06l4f4s05w3u" path="res://scenes/gun.tscn" id="3_o5bxk"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_8aisw"]
 [ext_resource type="PackedScene" uid="uid://cfrnjjeanjsiv" path="res://scenes/Gun2.tscn" id="4_pahx2"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_fqg37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efnaj"]
 size = Vector2(90, 126)
@@ -27,12 +24,6 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-
-[sub_resource type="Resource" id="Resource_4go4p"]
-script = ExtResource("4_8aisw")
-duration = 1.0
-transition = 0
-ease = 2
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(929, 482)
@@ -75,14 +66,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_guctx")
 value = 100.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("5_fqg37")
-
-[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
-script = ExtResource("3_e7j7o")
-follow_mode = 2
-follow_target = NodePath("..")
-tween_resource = SubResource("Resource_4go4p")
+physics_interpolation_mode = 1
 
 [connection signal="level_up" from="." to="Gun" method="_on_player_level_up"]
