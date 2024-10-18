@@ -11,7 +11,7 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	var direction = global_position.direction_to(player.global_position)
+	var direction: Vector2 = global_position.direction_to(player.global_position)
 	velocity = direction * speed
 	move_and_slide()
 	
@@ -22,8 +22,8 @@ func take_damage(amount):
 		queue_free()
 		enemy_died.emit()
 		
-		const smoke_scene = preload("res://assets/smoke_explosion/smoke_explosion.tscn")
-		var smoke = smoke_scene.instantiate()
+		const smoke_scene: PackedScene = preload("res://assets/smoke_explosion/smoke_explosion.tscn")
+		var smoke: Node = smoke_scene.instantiate()
 		get_parent().add_child(smoke)
 		smoke.global_position = global_position
 

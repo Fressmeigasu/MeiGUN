@@ -36,6 +36,11 @@ window/size/initial_position_type=2
 
 project/assembly_name="tutorial 2d vampire surv"
 
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/BulletUpHell/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/globalize-plugins/plugin.cfg", "res://addons/maaacks_game_template/plugin.cfg")

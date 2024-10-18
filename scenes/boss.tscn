@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dq5btph5efprt"]
+[gd_scene load_steps=15 format=3 uid="uid://dq5btph5efprt"]
 
 [ext_resource type="Script" path="res://scripts/boss.gd" id="1_8oe6n"]
 [ext_resource type="Texture2D" uid="uid://0opsfmxtje5g" path="res://icon.svg" id="1_xpbso"]
@@ -120,49 +120,6 @@ wait_tween_momentum = 0
 wait_tween_length = 0.0
 wait_tween_time = 0.0
 
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_ckkp4"]
-var/pos/name = &"pos"
-var/pos/type = 3
-var/pos/value = 0.0
-var/pos/hint = 0
-var/pos/hint_string = ""
-
-[sub_resource type="BTWait" id="BTWait_uyvaa"]
-
-[sub_resource type="BBNode" id="BBNode_rgvsm"]
-saved_value = NodePath(".")
-resource_name = "."
-
-[sub_resource type="BTCallMethod" id="BTCallMethod_ai8hr"]
-node = SubResource("BBNode_rgvsm")
-method = &"shoots"
-
-[sub_resource type="BTSequence" id="BTSequence_bg81n"]
-children = [SubResource("BTWait_uyvaa"), SubResource("BTCallMethod_ai8hr")]
-
-[sub_resource type="BTWait" id="BTWait_wuh4q"]
-duration = 0.5
-
-[sub_resource type="BBNode" id="BBNode_0l1sq"]
-saved_value = NodePath(".")
-resource_name = "."
-
-[sub_resource type="BTCallMethod" id="BTCallMethod_4sojc"]
-node = SubResource("BBNode_0l1sq")
-method = &"move"
-
-[sub_resource type="BTSequence" id="BTSequence_qgx2g"]
-children = [SubResource("BTWait_wuh4q"), SubResource("BTCallMethod_4sojc")]
-
-[sub_resource type="BTSequence" id="BTSequence_4niw2"]
-children = [SubResource("BTSequence_bg81n"), SubResource("BTSequence_qgx2g")]
-
-[sub_resource type="BehaviorTree" id="BehaviorTree_602gk"]
-blackboard_plan = SubResource("BlackboardPlan_ckkp4")
-root_task = SubResource("BTSequence_4niw2")
-
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_14gii"]
-
 [node name="Boss" type="CharacterBody2D" groups=["Boss"]]
 position = Vector2(962, 537)
 collision_layer = 2
@@ -199,10 +156,6 @@ pattern = SubResource("NavigationPolygon_lq1rx")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="BulletSpawnPoint" type="Marker2D" parent="."]
-
-[node name="BTPlayer" type="BTPlayer" parent="."]
-behavior_tree = SubResource("BehaviorTree_602gk")
-blackboard_plan = SubResource("BlackboardPlan_14gii")
 
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

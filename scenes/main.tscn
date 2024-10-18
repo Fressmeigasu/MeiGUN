@@ -343,6 +343,7 @@ process_mode = 2
 visible = false
 
 [node name="GameTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_o7g23")

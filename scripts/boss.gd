@@ -11,8 +11,15 @@ signal Boss_Died
 var new_pattern : PatternCircle = PatternCircle.new()
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
+	while health > 0:
+		get_tree().create_timer(10.0).timeout
+		shoots()
+		get_tree().create_timer(1.0).timeout
+		move()
+	
 	move_and_slide()
+
 
 func move():
 	var direction = Vector3()
